@@ -42,9 +42,9 @@ syn keyword zincKeyword     else elseif endif function if in include let
 syn keyword zincKeyword     minimize maximize op output predicate satisfy
 syn keyword zincKeyword     solve test then type where
 
-syn match   zincInt   		  "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
-syn match   zincFloat		    "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
-syn match   zincFloat		    "\<[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
+syn match   zincInt         "\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
+syn match   zincFloat       "\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
+syn match   zincFloat       "\<[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 
 syn keyword zincOp          not xor subset superset
 syn keyword zincOp          union diff symdiff intersect div mod
@@ -56,18 +56,18 @@ syn match   zincOp          +<->\|<-\|->\|/\\\|\\/+
 syn match   zincOp          +==\|!=\|<>\|=<\|<=\|<\|>=\|=>\|>\|>+
 syn match   zincOp          +\.\.\.+
 
-syn keyword zincToDo        XXX TODO NOTE         
+syn keyword zincToDo         XXX TODO NOTE
 syn region  zincString       start=+"+ skip=+\\.+ end=+"+                              contains=zincStringFmt
 syn match   zincStringFmt    +\\[abfnrtv]\|\\x[0-9a-fA-F]*\\\|%[-+# *.0-9]*[dioxXucsfeEgGp]+                                                                           contained
 
-if !exists("zinc_no_highlight_overlong") || !zinc_no_highlight_overlong
-  " The complicated regexp here matches an 80-column string,
-  " with proper treatment of tabs (assuming the tab size is 8):
-  " each row consists of 10 columns, and each column consists of either 8
-  " non-tab characters, or 0-7 non-tab characters followed by a tab.
-  syn match   zincFirst80 +^\([^	]\{8}\|[^	]\{0,7}	\)\{10}+                                contains=ALL
-  syn match   zincTooLong +^\([^	]\{8}\|[^	]\{0,7}	\)\{10}..*+                             contains=zincFirst80
-endif
+" if !exists("zinc_no_highlight_overlong") || !zinc_no_highlight_overlong
+"   " The complicated regexp here matches an 80-column string,
+"   " with proper treatment of tabs (assuming the tab size is 8):
+"   " each row consists of 10 columns, and each column consists of either 8
+"   " non-tab characters, or 0-7 non-tab characters followed by a tab.
+"   syn match   zincFirst80 +^\([^	]\{8}\|[^	]\{0,7}	\)\{10}+                                contains=ALL
+"   syn match   zincTooLong +^\([^	]\{8}\|[^	]\{0,7}	\)\{10}..*+                             contains=zincFirst80
+" endif
 
 syn region  cComment   start="/\*" end=".*\*/"                                          contains=zincToDo
 
@@ -84,4 +84,4 @@ hi link zincOp               Special
 hi link zincString           String
 hi link zincStringFmt        Special
 hi link zincAtom             Constant
-hi link zincTooLong          ErrorMsg
+" hi link zincTooLong          ErrorMsg
